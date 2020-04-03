@@ -1,0 +1,34 @@
+#! /bin/sh
+
+sxhkd &
+sh ~/.config/polybar/launch.sh &
+
+i=0
+run=0
+activeMonitors=`xrandr -q | grep "*" | wc -l`  # count number of lines in bspwm's monitor list
+per=$(( 10 / n ))          # number of desktops per monitor
+for monitor in `bspc query -M`; do
+    bspc monitor $monitor -d `seq $i $(( i + per - 1))`
+    # seq is end-inclusive; `seq 1 $((1+2))` returns "1 2 3"
+    i=$(( i + per ))
+    run++
+    if [run -ge activeMonitors]; then
+ 	   break;
+    fi
+done
+
+#bspc monitor DP-5 -d 1 2 3 4 5 6 7 8 9 10
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
