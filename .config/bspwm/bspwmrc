@@ -2,7 +2,7 @@
 
 sxhkd &
 sh ~/.config/polybar/launch.sh >> /dev/null &
-
+sh feh --bg-fill ~/.config/wallpaper/wall.jpg &
 
 # Single/Dual monitor config
 run=1
@@ -11,12 +11,11 @@ per=10          # number of desktops per monitor
 # If dual monitor use pair for one, and even for another
 if [ $MONITORS -gt 1 ]; then
    for monitor in `xrandr | grep " connected " | awk '{ print$1 }'`; do
-      echo 'Monitor ' + $monitor ' has ' +  `seq $run 2 $per`
       bspc monitor $monitor -d `seq $run 2 $per`
       ((run++))
    done
 else
-   monitor=`bspc query -M`
+   monitor=`xrandr | grep " connected " | awk '{ print$1 }'`
    bspc monitor $monitor -d `seq $per`
 fi
 
@@ -31,7 +30,7 @@ bspc config focus_follows_pointer true
 bspc config pointer_follows_focus true
 
 bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Chromium desktop='^2'
+#bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Android state=floating
 bspc rule -a Kupfer.py focus=on

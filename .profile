@@ -5,6 +5,9 @@ export ANDROID_HOME=/mnt/HD0/Android
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# Number of monitors connectes
+export MONITORS=`xrandr -q | grep "*" | wc -l`  # count number of lines in bspwm's monitor list
+
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="st"
@@ -22,5 +25,5 @@ alias sl='ls'
 
 # Init Programs
 unclutter &  # Disable mouse when idle
-
+tput smkx
 
