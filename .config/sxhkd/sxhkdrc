@@ -10,6 +10,10 @@ super + Return
 super + shift + Return
 	$BROWSER
 
+# Open file manager
+super + e 
+	$FILE
+
 # program launcher
 super + @space
 	rofi -show drun -show-icons -modi drun
@@ -58,6 +62,19 @@ super + alt + shift + {Left,Down,Up,Right}
 super + l
 	betterlockscreen -l dim
 
+# Increase volume
+XF86AudioRaiseVolume
+	pamixer -i 5
 
+# Lower Volume
+XF86AudioLowerVolume
+	pamixer -d 5 
 
+# Mute Speaker
+XF86AudioMute
+	pactl set-sink-mute 0 toggle
+
+# Mute Mic
+XF86AudioMicMute
+	pactl set-source-mute 1 toggle
 

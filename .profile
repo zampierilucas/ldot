@@ -10,9 +10,9 @@ export MONITORS=`xrandr -q | grep "*" | wc -l`  # count number of lines in bspwm
 
 # Default programs:
 export EDITOR="nvim"
-export TERMINAL="st"
+export TERMINAL="gnome-terminal"
 export BROWSER="chromium"
-export FILE="ranger"
+export FILE="nautilus"
 export STATUSBAR="polybar"
 
 # Shortcut
