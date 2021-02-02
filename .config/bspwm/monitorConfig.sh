@@ -13,7 +13,7 @@ work () {
     curr_display_cfg="work"
     clean
     sh ~/.config/screenlayout/workconfig.sh
-    sudo synergys -f --no-tray --debug INFO -c ~/.config/synergy/config_work --address :24800 --serial-key $SYNERGY_KEY > /dev/null &
+    sudo synergys -f --no-tray --debug INFO -c ~/.config/Synergy/config_work --address :24800 --serial-key $SYNERGY_KEY > /dev/null &
     pacmd load-module module-null-sink sink_name=MySink
     pacmd update-sink-proplist MySink device.description=MySink
     sudo chown $USER /etc/pulse/client.conf
