@@ -1,0 +1,364 @@
+;==========================================================
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;==========================================================
+
+;; COLORS
+
+[colors]
+background = #222
+background-alt = #444
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+bg = #212121
+fg = #1C1E20
+fg-alt = #C4C7C5
+mf = #C4C7C5
+ac = #B4BC67
+bn = #308634
+bm = #E57C46
+bd = #E24C49
+trans = #00000000
+white = #FFFFFF
+black = #000000
+red = #EC7875
+pink = #EC6798
+purple = #BE78D1
+blue = #75A4CD
+cyan = #00C7DF
+teal = #00B19F
+green = #61C766
+lime = #B9C244
+yellow = #EBD369
+amber = #EDB83F
+orange = #E57C46
+brown = #AC8476
+grey = #8C8C8C
+indigo = #6C77BB
+blue-gray = #6D8895
+
+## BARS
+
+[bar/top_linear]
+inherit = bar/master
+bottom = false
+modules-left = bspwm sporify 
+modules-right = weather volume battery battery-dualshock4 battery-g933 lz-ping network temperature cpu lz-memory date
+
+[bar/bottom]
+inherit = bar/master
+bottom = true
+
+[bar/master]
+bottom = true
+width = 100%
+height = 27
+
+tray-position = left
+tray-padding = 15
+override-redirect = false
+wm-restack = bspwm
+enable-ipc=true
+
+background = #99000000
+foreground = #ccffffff
+
+line-color = #00000000
+line-size = 2
+
+spacing = 2 
+padding-right = 2
+module-margin-left = 0
+module-margin-right = 3 
+
+## FONTS
+font-0 = Iosevka Term::size=10;0
+font-1 = unifont:size=106;-3
+font-2 = Termsynu:size=8:antialias=false;0
+font-3 = Weather Icons:size=12;
+font-4 = Font Awesome 5 Free:pixelsize=10;0
+font-5 = Font Awesome 5 Free Solid:pixelsize=10;0
+font-6 = Font Awesome 5 Brands:pixelsize=10;0
+
+modules-left = bspwm
+modules-right = spotify volume wireless-network battery temperature lz-cpu lz-memory batrtt lz-ping network date
+
+[module/backlight]
+type = internal/xbacklight
+format = <ramp> <bar>
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-font = 3
+bar-indicator-foreground = #ff
+bar-fill = ─
+bar-fill-font = 3
+bar-fill-foreground = #c9665e
+bar-empty = ─
+bar-empty-font = 3
+bar-empty-foreground = #44
+
+[module/temperature]
+type = internal/temperature
+
+interval = 1.0
+thermal-zone = 0
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input
+
+base-temperature = 0
+warn-temperature = 90
+format-padding = 0
+format =<ramp><label>
+ramp-0 =
+ramp-1 =
+ramp-2 =
+ramp-foreground = #fff
+
+[module/battery]
+type = internal/battery
+interval = 1.0
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+bar-capacity-width = 10
+bar-capacity-format = %{+u}%{+o}%fill%%empty%%{-u}%{-o}
+bar-capacity-fill = █
+bar-capacity-fill-foreground = #ddffffff
+bar-capacity-fill-font = 3
+bar-capacity-empty = █
+bar-capacity-empty-font = 3
+bar-capacity-empty-foreground = #44ffffff
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+[module/bspwm]
+type = internal/bspwm
+
+format = <label-state> <label-mode>
+
+label-focused = %name%
+label-focused-foreground = #fff
+label-focused-background = #000
+label-focused-underline = #fff
+label-focused-font = 1
+label-focused-padding = 2
+
+label-occupied = %name%
+label-occupied-foreground = #ddd
+label-occupied-underline = #000
+label-occupied-font = 1
+label-occupied-padding = 2
+
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-underline = #9b0a20
+label-urgent-font = 1
+label-urgent-padding = 3
+
+label-empty = ""
+label-empty-foreground = #52
+label-empty-font = 1
+label-empty-padding = 0
+
+label-monocle = 
+label-monocle-underline = ${module/bspwm.label-focused-underline}
+label-monocle-background = #33ffffff
+label-monocle-padding = 2
+
+label-locked = 
+label-locked-foreground = #bd2c40
+label-locked-underline = ${module/bspwm.label-monocle-underline}
+label-locked-padding = ${module/bspwm.label-monocle-padding}
+
+label-sticky = 
+label-sticky-foreground = #fba922
+label-sticky-underline = ${module/bspwm.label-monocle-underline}
+label-sticky-padding = ${module/bspwm.label-monocle-padding}
+
+label-private = 
+label-private-foreground = #bd2c40
+label-private-underline = ${module/bspwm.label-monocle-underline}
+label-private-padding = ${module/bspwm.label-monocle-padding}
+
+[module/bspwm_pairs]
+inherit = module/bspwm
+ws-icon-0 = 2;a
+ws-icon-1 = 4;b
+ws-icon-2 = 6;c
+ws-icon-3 = 8;d
+ws-icon-4 = 10;e
+ws-icon-5 = 1;f
+ws-icon-6 = 3;g
+ws-icon-7 = 5;h
+ws-icon-8 = 7;i
+ws-icon-9 = 9;j
+
+[module/date]
+type = internal/date
+date =  %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+date-alt = %%{F# fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+
+[module/wireless-network]
+type = internal/network
+interface = ${env:DEFAULT_NETWORK_INTERFACE}
+interval = 3.0
+ping-interval = 10
+
+;format-connected = <ramp-signal><label-connected>
+;label-connected = %essid%
+
+label-connected =%essid%
+label-disconnected = 
+
+;label-disconnected-foreground = #66
+
+;format-connected-underline = #55aa55
+format-connected =%{A1:$HOME/.config/rofi/scripts/nmcli-rofi:}<ramp-signal> <label-connected>%{A}
+format-disconnected = <label-disconnected>
+label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+
+animation-packetloss-0 = 
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 
+animation-packetloss-1-foreground = ${bar/top.foreground}
+animation-packetloss-framerate = 500
+
+[module/volume]
+type = internal/alsa
+
+format-volume = <ramp-volume><label-volume>
+label-muted = 
+label-muted-foreground = #66
+
+ramp-volume-0 =%{T6}%{T-}
+ramp-volume-1 =%{T6}%{T-}
+ramp-volume-2 =%{T6}%{T-}
+ramp-volume-3 =%{T6}%{T-}
+
+
+[module/cpu]
+type = internal/cpu
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 0.5
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+format = <label><ramp-coreload>
+
+; Available tokens:
+;   %percentage% (default) - total cpu load averaged over all cores
+;   %percentage-sum% - Cumulative load on all cores
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label = %percentage:2%%
+
+; Spacing between individual per-core ramps
+ramp-coreload-0 ="%{O-7}▁"
+ramp-coreload-1 ="%{O-7}▂"
+ramp-coreload-2 ="%{O-7}▃"
+ramp-coreload-3 ="%{O-7}▄"
+ramp-coreload-4 ="%{O-7}▅"
+ramp-coreload-5 ="%{O-7}▆"
+ramp-coreload-6 ="%{O-7}▇"
+ramp-coreload-7 ="%{O-7}█"
+ramp-coreload-0-foreground = #aaff77
+ramp-coreload-1-foreground = #aaff77
+ramp-coreload-2-foreground = #aaff77
+ramp-coreload-3-foreground = #aaff77
+ramp-coreload-4-foreground = #fba922
+ramp-coreload-5-foreground = #fba922
+ramp-coreload-6-foreground = #ff5555
+ramp-coreload-7-foreground = #ff5555
+
+[module/lz-memory]
+type = custom/script
+exec = ~/.config/polybar/scripts/lz-memory.sh
+click-left = ~/.config/polybar/scripts/lz-memory.sh --popup
+interval = 2
+
+[module/lz-ping]
+type = custom/script
+exec = ~/.config/polybar/scripts/lz-ping.sh
+interval = 30
+
+[module/battery-dualshock4]
+type= custom/script
+exec = ~/.config/polybar/scripts/battery-dualshock4.sh
+interval = 60
+
+[module/battery-g933]
+type = custom/script
+exec = ~/.config/polybar/scripts/battery-g933.sh
+interval = 60
+
+[module/spotify]
+type = custom/script
+tail = true
+format-prefix = " "
+format = <label>
+exec = ~/.config/polybar/scripts/scroll_spotify_status.sh
+
+[module/network]
+type = internal/network
+interface = ${env:DEFAULT_NETWORK_INTERFACE:wlp2s0}
+
+interval = 1.0
+accumulate-stats = true
+unknown-as-up = true
+
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #4bffdc
+
+format-connected =<label-connected>
+#format-connected-background = ${colors.mf}
+#format-connected-padding = -1
+format-disconnected =<label-disconnected>
+format-disconnected-padding = 2
+
+label-connected ="▼%downspeed:8% ▲%upspeed:8%"
+label-disconnected = ""
+
+[module/weather]
+type = custom/script
+exec = ~/.config/polybar/scripts/polybar-forecast
+exec-if = ping openweathermap.org -c 1
+interval = 600
+label-font = 3

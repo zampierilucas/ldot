@@ -1,0 +1,63 @@
+#! /bin/bash
+
+monitor_resolution () {
+  monitorToProbe="$1"  
+  xrandrResolution=`xrandr | grep $monitorToProbe | awk {'print $3'}`
+  if [[ $xrandrResolution == "primary" ]]; then
+    xrandrResolution=`xrandr | grep $monitorToProbe | awk {'print $4'}`
+  fi
+  echo $xrandrResolution
+}
+
+NOW=$(date +"%m-%d-%y-%s")
+logPath=~/.config/bspwm/log/$NOW-WMLog
+
+echo "$NOW - [BSPWM] Launching..." 
+
+# Source user profile to get updated monitors config
+echo "$NOW - [BSPWM] Sourcing .profile" 
+source ~/.profile 
+
+# number of desktops per monitor
+per=10
+
+connectedMonitors=`xrandr | grep " connected " | awk '{ print$1 }'`
+activeMonitors=`xrandr --listactivemonitors | grep '+' | awk {'print $4'}`
+diff=${connectedMonitors//$activeMonitors}
+
+if [ $MONITORS -gt 1 ]; then
+    echo "$NOW - [BSPWM] Dual monitor config" 
+    run=1
+    for monitor in $connectedMonitors; do
+        bspc monitor $monitor -d `seq $run 2 $per` 
+        echo "Configuring monitor $(monitor_resolution $monitor)"
+        bspc monitor $monitor --rectangle $(monitor_resolution $monitor) 
+        ((run++))
+   done
+else
+    echo "$NOW - [BSPWM] Single monitor config" 
+    bspc monitor $activeMonitors -d `seq $per` 
+
+    if [ $(wc -w <<< $connectedMonitors) -gt $(wc -w <<< $activeMonitors) ]; then
+        echo "$NOW - [BSPWM] Monitors connected not in use, removing..." 
+        bspc monitor $diff -r 
+    fi
+fi
+
+bspc config border_width          2
+bspc config window_gap            5
+bspc config split_ratio           0.52
+bspc config borderless_monocle    true
+bspc config gapless_monocle       true
+bspc config focus_follows_pointer true
+bspc config normal_border_color   \#262322
+bspc config focused_border_color  \#FFFFFF
+#bspc config pointer_follows_focus true
+
+export monitor_resolution
+sh ~/.config/bspwm/java_non-repeting_window_fix.sh
+sh ~/.config/bspwm/monitorConfig.sh
+sh ~/.config/bspwm/reload.sh
+feh --bg-fill ~/.config/wallpaper/wall.jpg
+echo "$NOW - Initilization complete" 
+
