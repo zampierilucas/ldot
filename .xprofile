@@ -3,9 +3,9 @@
 setxkbmap -layout us -variant intl &
 unclutter &
 tput smkx &
-picom --experimental-backends --backend glx &
+#picom --experimental-backends --backend glx &
 sxhkd &
 deadd-notification-center &
-sh ~/.config/polybar/launch.sh &
+#sh ~/.config/polybar/launch.sh &
 feh --bg-fill ~/.config/wallpaper/wall.jpg 
 light-locker &

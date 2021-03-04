@@ -33,14 +33,19 @@ super + shift + f
 
 # focus the node in the given direction
 super + {_,shift + }{Left,Down,Up,Right}
-	bspc node -{f,s} {west,south,north,east}
+	bspc node -{f,s} {west,south,north,east} --follow
+
+super + ctrl + {Left,Down,Up,Right}
+  dir={west,south,north,east}; \
+  bspc node -s "$dir.local" --follow \
+  || bspc node -m "$dir" --follow
 
 # Make a windoww sticky/non-sticky
 super + o
 	bspc node -g sticky={on,off}
 
 # rotate parent by 90 degrees
-super + {_, alt +} r
+super + {_, shift +} r
 	bspc node @parent -R {+,-}90
 
 # Increase/descrease gap size
@@ -52,7 +57,7 @@ super + {_,shift +} {1-9,0}
 	bspc {desktop -f,node -d} {1-9,10}
 
 #Restart bspwm
-super + shift + r
+super + F12
 	bspc wm -r
 
 # Resize window

@@ -2,9 +2,11 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 ZSH=/usr/share/oh-my-zsh
 ZSH_CUSTOM=/home/$USER/.config/oh-my-zsh/
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME

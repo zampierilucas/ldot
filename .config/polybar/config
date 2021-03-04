@@ -77,8 +77,15 @@ line-size = 2
 
 spacing = 2 
 padding-right = 2
-module-margin-left = 0
-module-margin-right = 3 
+module-margin-left = 1
+module-margin-right = 1 
+margin-bottom = 0
+margin-top = 0
+
+border-left = 0
+border-right = 0
+border-top = 0
+border-bottom = 5
 
 ## FONTS
 font-0 = Iosevka Term::size=10;0
@@ -187,11 +194,6 @@ label-empty = ""
 label-empty-foreground = #52
 label-empty-font = 1
 label-empty-padding = 0
-
-label-monocle = 
-label-monocle-underline = ${module/bspwm.label-focused-underline}
-label-monocle-background = #33ffffff
-label-monocle-padding = 2
 
 label-locked = 
 label-locked-foreground = #bd2c40

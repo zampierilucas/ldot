@@ -14,8 +14,8 @@ export STATUSBAR="polybar"
 
 # Shortcut
 alias cat='bat'
-alias vim='nvim'
-alias rvim='sudo -E nvim'
+#alias vim='nvim'
+alias rvim='sudo -E vim'
 alias clip='xclip -select clipboard'
 alias ..='cd ..'
 alias ...='cd ../..'
