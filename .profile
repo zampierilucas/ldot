@@ -11,6 +11,7 @@ export TERMINAL="alacritty"
 export BROWSER="google-chrome-stable"
 export FILE="nautilus"
 export STATUSBAR="polybar"
+export XDG_CACHE_HOME="/mnt/data1/cache"
 
 # Shortcut
 alias cat='bat'

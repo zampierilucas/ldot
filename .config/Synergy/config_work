@@ -18,6 +18,8 @@ end
 section: aliases
 	Unnamed:
 		ZAMPIERI2
+		localhost.localdomain
+		trusty
 end
 
 section: links

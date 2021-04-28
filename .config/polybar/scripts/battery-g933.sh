@@ -2,16 +2,18 @@
 
 BatterySimbol="%{T6}%{T-}"
 
-Porcentage=`headsetcontrol -b 2>&1 | sed -rn 's/.*Battery: //p' 2>&1`
+Porcentage=`~/.config/polybar/scripts/g933-utils get battery | awk '{print $2}'`
+chargingData=`~/.config/polybar/scripts/g933-utils get battery | awk '{print $3}'`
+isCharging=`[[ "$chargingData" == "[discharging]" ]] && echo false || echo true`
 
 if [ "$Porcentage" == "" ]; then
 	echo ""
-elif [ "$Porcentage" == "Charging" ]; then
+elif [ "$isCharging" == "true" ]; then
   icon="%{F#ffaa00}$BatterySimbol%{F-}"
 else
-	if [ "${Porcentage//%}" -lt 15 ]; then
+	if [ "${Porcentage%%.*}" -lt 15 ]; then
     icon="%{F#d60606}$BatterySimbol%{F-}"
-	elif [ "${Porcentage//%}" -lt 20 ]; then
+	elif [ "${Porcentage%%.*}" -lt 20 ]; then
 		icon="%{F#f9dd04}$BatterySimbol%{F-}"
 	else
 		icon="%{F#3cb703}$BatterySimbol%{F-}"

@@ -51,8 +51,9 @@ blue-gray = #6D8895
 [bar/top_linear]
 inherit = bar/master
 bottom = false
-modules-left = bspwm sporify 
+modules-left = bspwm spotify
 modules-right = weather volume battery battery-dualshock4 battery-g933 lz-ping network temperature cpu lz-memory date
+#modules-right = volume network  cpu date
 
 [bar/bottom]
 inherit = bar/master

@@ -1,0 +1,8 @@
+[Unit]
+Description=Synergy Server
+
+[Service]
+ExecStart=/usr/bin/synergys -f --no-tray --debug INFO --name workstation -c /home/zampierilucas/.config/Synergy/config_work --address :24800 --serial-key 7B76313B62617369633B6C75636173207A616D70696572693B313B6C6361736D7A353440676D61696C2E636F6D3B203B303B307D 
+
+[Install]
+WantedBy=multi-user.target

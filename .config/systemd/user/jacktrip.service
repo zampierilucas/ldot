@@ -1,0 +1,11 @@
+[Unit]
+Description=JackTrip Server
+
+[Service]
+ExecStart=/usr/bin/jacktrip -Sp 0
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
+
+
